@@ -1,0 +1,11 @@
+<div class="row" *ngFor="let item of content">
+  <div class="col-md-6">
+    <img src="{{item.imageurl}}" alt="#" />
+  </div>
+  <div class="col-md-6">
+    <div class="full blog_cont">
+      <h4>{{item.title}}</h4>
+      <h5>{{item.createdat}}</h5>
+      <p>{{item.content}}</p>  </div>
+  </div>
+</div>

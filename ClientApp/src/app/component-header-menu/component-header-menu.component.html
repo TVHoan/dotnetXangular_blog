@@ -1,0 +1,49 @@
+<header>
+  <!-- header inner -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3 logo_section">
+        <div class="full">
+          <div class="center-desk">
+            <div class="logo"> <a [routerLink]="['/']"><img src="./assets/images/logo.png" alt="#"></a> </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9">
+        <div class="menu-area">
+          <div class="limit-box">
+            <nav class="main-menu">
+              <ul class="menu-area-main">
+                <li class="active">
+                  <a [routerLink]="['/']">Home</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/about']">About</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/marketing']">Marketing</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/blog']">Blog</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/contact']">Contact us</a>
+                </li>
+                <li>
+                  <a [routerLink]='["/authentication/login"]'>Login</a>
+                </li>
+                <li>
+                  <a [routerLink]='["/authentication/register"]'>Register</a>
+                </li>
+                <li>
+                  <a href="#"><img src="./assets/images/search_icon.png" alt="#" /></a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end header inner -->
+</header>
