@@ -549,16 +549,30 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\css\.DS_Store" />
-    <None Include="wwwroot\css\bootstrap-grid.css.map" />
-    <None Include="wwwroot\css\bootstrap-grid.min.css.map" />
-    <None Include="wwwroot\css\bootstrap-reboot.css.map" />
-    <None Include="wwwroot\css\bootstrap-reboot.min.css.map" />
-    <None Include="wwwroot\css\bootstrap.css.map" />
-    <None Include="wwwroot\css\bootstrap.min.css.map" />
-    <None Include="wwwroot\fonts\fontawesome-webfont.svg" />
-    <None Include="wwwroot\fonts\fontawesome-webfont.woff2" />
-    <None Include="wwwroot\images\.DS_Store" />
+    <None Include="wwwroot\assets\.gitkeep" />
+    <None Include="wwwroot\assets\images\banner_bg.png" />
+    <None Include="wwwroot\assets\images\blog1.png" />
+    <None Include="wwwroot\assets\images\blog2.png" />
+    <None Include="wwwroot\assets\images\blog_1.png" />
+    <None Include="wwwroot\assets\images\c_1.png" />
+    <None Include="wwwroot\assets\images\c_2.png" />
+    <None Include="wwwroot\assets\images\fevicon.png" />
+    <None Include="wwwroot\assets\images\footer_blog.png" />
+    <None Include="wwwroot\assets\images\footer_logo.png" />
+    <None Include="wwwroot\assets\images\head_d.png" />
+    <None Include="wwwroot\assets\images\img1.jpg" />
+    <None Include="wwwroot\assets\images\img2.jpg" />
+    <None Include="wwwroot\assets\images\loading.gif" />
+    <None Include="wwwroot\assets\images\location_icon.png" />
+    <None Include="wwwroot\assets\images\logo.png" />
+    <None Include="wwwroot\assets\images\mail_icon.png" />
+    <None Include="wwwroot\assets\images\maps-and-flags.png" />
+    <None Include="wwwroot\assets\images\marketing_img.png" />
+    <None Include="wwwroot\assets\images\menu_icon.png" />
+    <None Include="wwwroot\assets\images\phone_icon.png" />
+    <None Include="wwwroot\assets\images\search_icon.png" />
+    <None Include="wwwroot\assets\images\slider_1.png" />
+    <None Include="wwwroot\assets\images\technical-financial-graph-technology-abstract-background_34663-60.jpg" />
     <None Include="wwwroot\js\.DS_Store" />
     <None Include="wwwroot\js\bootstrap.bundle.js" />
     <None Include="wwwroot\js\bootstrap.bundle.js.map" />

@@ -1,0 +1,19 @@
+<div class="slideshow-container">
+
+  <!-- Full-width images with number and caption text -->
+  <div *ngFor="let item of slide; index as i" class="mySlides  " [hidden]="!item.active">
+    <div class="numbertext">{{ i+1 +"/"+ slide.length}}</div>
+    <img src="{{item.urlimage}}" style="width:100%">
+  </div>
+
+  <!-- Next and previous buttons -->
+  <a class="prev" (click)="Prev()" >&#10094;</a>
+  <a class="next"  (click)="Next()" >&#10095;</a>
+</div>
+<br>
+
+<!-- The dots/circles -->
+<div style="text-align:center">
+  <span class="dot" ></span>
+  <span class="dot" ></span>
+</div>

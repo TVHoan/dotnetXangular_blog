@@ -17,9 +17,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {PostContentComponent} from "./post-content/post-content.component";
 import {AboutComponent} from "./about/about.component";
 import {FooterComponent} from "./footer/footer.component";
-import {MarketingComponent} from "./marketing/marketing.component";
 import {BlogComponent} from "./blog/blog.component";
 import {ContactComponent} from "./contact/contact.component";
+import {BannerSlideComponent} from "./banner-slide/banner-slide.component";
 
 @NgModule({
   declarations: [
@@ -32,9 +32,9 @@ import {ContactComponent} from "./contact/contact.component";
     PostContentComponent,
     AboutComponent,
     FooterComponent,
-    MarketingComponent,
     BlogComponent,
-    ContactComponent
+    ContactComponent,
+    BannerSlideComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -46,7 +46,6 @@ import {ContactComponent} from "./contact/contact.component";
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent , canActivate: [AuthorizeGuard]},
       { path: 'about', component: AboutComponent},
-      { path: 'marketing', component: MarketingComponent },
       { path: 'blog', component: BlogComponent },
       { path: 'contact', component: ContactComponent },
     ])
