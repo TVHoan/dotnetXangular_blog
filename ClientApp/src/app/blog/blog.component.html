@@ -7,12 +7,12 @@
         </div>
       </div>
     </div>
-    <app-post-content></app-post-content>
+    <app-post-content [getmore]="this.getmore"></app-post-content>
 
     <div class="row margin_top_30">
       <div class="col-md-12">
         <div class="button_section full center margin_top_30">
-          <a style="margin:0;" [routerLink]='["/about"]'>Read More</a>
+          <a style="margin:0;" (click)="Getmore()" >Read More</a>
         </div>
       </div>
     </div>

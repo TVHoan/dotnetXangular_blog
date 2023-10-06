@@ -21,6 +21,7 @@ import {BlogComponent} from "./blog/blog.component";
 import {ContactComponent} from "./contact/contact.component";
 import {BannerSlideComponent} from "./banner-slide/banner-slide.component";
 import {DetailBlogContentComponent} from "./detail-blog-content/detail-blog-content.component";
+import {CommentComponent} from "./comment/comment.component";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {DetailBlogContentComponent} from "./detail-blog-content/detail-blog-cont
     BlogComponent,
     ContactComponent,
     BannerSlideComponent,
-    DetailBlogContentComponent
+    DetailBlogContentComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

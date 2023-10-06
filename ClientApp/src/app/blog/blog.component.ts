@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./blog.component.css']
 })
 export class BlogComponent {
+  public getmore : boolean = false
 
+
+  constructor() {
+  }
+  Getmore(){
+    this.getmore = true;
+  }
 }
