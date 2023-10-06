@@ -16,6 +16,7 @@ export class PostContentComponent {
   }
 }
 interface ContentPost {
+  id: string,
   title : string,
   createdat :string,
   content:string,

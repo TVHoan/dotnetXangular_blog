@@ -20,6 +20,7 @@ import {FooterComponent} from "./footer/footer.component";
 import {BlogComponent} from "./blog/blog.component";
 import {ContactComponent} from "./contact/contact.component";
 import {BannerSlideComponent} from "./banner-slide/banner-slide.component";
+import {DetailBlogContentComponent} from "./detail-blog-content/detail-blog-content.component";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {BannerSlideComponent} from "./banner-slide/banner-slide.component";
     FooterComponent,
     BlogComponent,
     ContactComponent,
-    BannerSlideComponent
+    BannerSlideComponent,
+    DetailBlogContentComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -48,6 +50,7 @@ import {BannerSlideComponent} from "./banner-slide/banner-slide.component";
       { path: 'about', component: AboutComponent},
       { path: 'blog', component: BlogComponent },
       { path: 'contact', component: ContactComponent },
+      { path: 'blogdetail', component: DetailBlogContentComponent },
     ])
   ],
   providers: [

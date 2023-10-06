@@ -14,6 +14,6 @@
 
 <!-- The dots/circles -->
 <div style="text-align:center">
-  <span class="dot" ></span>
-  <span class="dot" ></span>
+  <span *ngFor="let item of slide; index as i" class="dot {{item.active ? 'currentdot': ''}}" (click)="SetSlide(i)"   ></span>
+
 </div>

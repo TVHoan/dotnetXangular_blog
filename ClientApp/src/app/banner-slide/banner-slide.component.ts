@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
 @Component({
@@ -6,12 +6,18 @@ import {HttpClient} from "@angular/common/http";
   templateUrl: './banner-slide.component.html',
   styleUrls: ['./banner-slide.component.css']
 })
-export class BannerSlideComponent {
+export class BannerSlideComponent implements OnInit{
     public slide: Side[] = [];
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     http.get<Side[]>(baseUrl + 'api/bannerslide').subscribe(result => {
       this.slide = result;
     }, error => console.error(error));
+  }
+  ngOnInit(): void {
+    // while (true){
+    //   setTimeout(()=>this.Next(),1000)
+    // }
+    setInterval(()=>this.Next(),2000)
   }
   Next(){
     let activeitem = this.slide.filter(x=>x.active===true)[0]
@@ -35,6 +41,12 @@ export class BannerSlideComponent {
     this.slide[index].active = false
     this.slide[previtem].active = true
   }
+  SetSlide(index:number){
+    this.slide.map(x=>x.active=false);
+    this.slide[index].active= true;
+  }
+
+
 }
 interface Side {
   urlimage : string,
