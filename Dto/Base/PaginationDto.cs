@@ -1,6 +1,7 @@
-namespace DotnetAngular.Dto.base;
+namespace DotnetAngular.Dto.Base;
 
-public class PaginationDto
+public interface PaginationDto
 {
-    
+    public int? Skip { get; set; }
+    public int? Take { get; set; }
 }
