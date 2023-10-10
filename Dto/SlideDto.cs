@@ -1,6 +1,6 @@
 namespace DotnetAngular.Dto;
 
-public class Slide
+public class SlideDto
 {
     public string Urlimage { get; set; }
     public bool Active { get; set; }

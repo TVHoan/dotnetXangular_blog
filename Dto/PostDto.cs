@@ -2,7 +2,7 @@ using DotnetAngular.Dto.Base;
 
 namespace DotnetAngular.Dto;
 
-public class ContentDto 
+public class PostDto
 {   
     public string? Id { get; set; }
     public string Title { get; set; }

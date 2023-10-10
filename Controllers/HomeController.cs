@@ -1,11 +1,18 @@
+using DotnetAngular.Data;
 using DotnetAngular.Dto;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DotnetAngular.Controllers;
 [ApiController]
 public class HomeController: ControllerBase
 {
-    private Slide[] slide = new[]
+    private ApplicationDbContext _context;
+    public HomeController(ApplicationDbContext context)
+    {
+        _context = context;
+    }
+/*    private Slide[] slide = new[]
     {
         new Slide
         {
@@ -17,10 +24,15 @@ public class HomeController: ControllerBase
             Urlimage = "./assets/images/img2.jpg",
             Active = false
         }
-    };
+    };*/
     [HttpGet("api/bannerslide")]
-    public Slide[] GetSlides()
+    public SlideDto[] GetSlides()
     {
-        return slide;
+       var data =  _context.Slides.ToList();
+        return data.Select(x=> new SlideDto
+        {   
+            Urlimage = x.Urlimage,
+           Active  =   x.Active
+        }).ToArray();
     }
 }

@@ -1,3 +1,4 @@
+using DotnetAngular.Data;
 using DotnetAngular.Dto;
 using Microsoft.AspNetCore.Mvc;
 
@@ -5,10 +6,17 @@ namespace DotnetAngular.Controllers;
 [ApiController]
 public class BlogController: ControllerBase
 {
-    private ContentDto[] content = new[]
+    private readonly ApplicationDbContext _context;
+
+    public BlogController(ApplicationDbContext context)
     {
-        new ContentDto
-        {   
+        _context = context;
+    }
+
+    private PostDto[] content = new[]
+    {
+        new PostDto
+        {
             Id = "1",
             Title = "The biggest and most awesome camera of year",
             Createdat = "MAY 14 2019 5 READ",
@@ -16,31 +24,31 @@ public class BlogController: ControllerBase
                 "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.",
             Imageurl = "./assets/images/blog1.png"
         },
-        new ContentDto
+        new PostDto
         {
             Id = "2",
             Title = "What 3 years of android taught me the hard way",
             Createdat = "MAY 19 2019 5 READ",
             Content =
-                "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable."         ,   
+                "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable."         ,
             Imageurl = "./assets/images/blog2.png"
         },
-        new ContentDto
-        {   
+        new PostDto
+        {
             Id = "3",
-            Title = "The biggest and most awesome camera of year",
+            Title = " 2 The biggest and most awesome camera of year",
             Createdat = "MAY 14 2019 5 READ",
             Content =
                 "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.",
             Imageurl = "./assets/images/blog1.png"
         },
-        new ContentDto
+        new PostDto
         {
             Id = "4",
-            Title = "What 3 years of android taught me the hard way",
+            Title = " 2 What 3 years of android taught me the hard way",
             Createdat = "MAY 19 2019 5 READ",
             Content =
-                "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable."         ,   
+                "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable."         ,
             Imageurl = "./assets/images/blog2.png"
         }
     };
@@ -67,14 +75,23 @@ public class BlogController: ControllerBase
     };
     [HttpGet]
     [Route("api/aboutcontent")]
-    public  ContentDto[] GetContentAbout([FromQuery]CommentInputDto input)
+    public  PostDto[] GetContentAbout([FromQuery]CommentInputDto input)
     {
-        return content.Skip(input.Skip?? 0).Take(input.Take ?? 2).ToArray();
+        var data =  _context.Posts.Where(X=>X.PostTypeId==null).Skip(input.Skip?? 0).Take(input.Take ?? 2).ToArray();
+        return data.Select(x => new PostDto
+        {
+            Id = x.Id.ToString(),
+            Title = x.Title,
+            Content = x.Content,
+            Createdat = x.Createdat.ToShortDateString(),
+            Imageurl = x.Imageurl
+
+        }).ToArray();
     }
    
     [HttpGet]
     [Route("api/blogdetailcontent")]
-    public ContentDto GetDetail([FromQuery] string id)
+    public PostDto GetDetail([FromQuery] string id)
     {
        return content.FirstOrDefault(x => x.Id == id);
     }
