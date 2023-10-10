@@ -21,7 +21,7 @@ namespace DotnetAngular.Areas.Identity.Pages.Role;
     public class InputModel {
       [Required]
       public string ID { set; get; }
-      public string Name { set; get; }
+      public string? Name { set; get; }
 
       public string[] RoleNames  {set; get;}
 

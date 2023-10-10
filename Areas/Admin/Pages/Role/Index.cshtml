@@ -1,5 +1,10 @@
-@page 
+@page
+@using DotnetAngular.Areas.Identity.Pages.Account.Manage
 @model DotnetAngular.Areas.Identity.Pages.Role.IndexRoleModel
+@{
+    Layout = "../_Layout";
+    ViewData["ActivePage"] = ManageNavPages.Role;
+}
 <h3>Danh sách các role</h3>
 <partial name="_StatusMessage" model="@Model.StatusMessage" />
 

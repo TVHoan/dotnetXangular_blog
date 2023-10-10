@@ -1,9 +1,13 @@
-@page "/admin/role/users/"
+@page
+@using DotnetAngular.Areas.Identity.Pages.Account.Manage
 @model DotnetAngular.Areas.Identity.Pages.Role.UserModel
 @{
     ViewData["Title"] = "DANH SÁCH NGƯỜI DÙNG";
 }
-
+@{
+    Layout = "../_Layout";
+    ViewData["ActivePage"] = ManageNavPages.Role;
+}
 
 <h4>@ViewData["Title"]</h4>
 <partial name="_StatusMessage" model="@Model.StatusMessage" />

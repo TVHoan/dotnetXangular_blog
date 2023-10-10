@@ -1,10 +1,16 @@
-@page "/admin/role/updaterole/{handler?}/"
+@page
+@using DotnetAngular.Areas.Identity.Pages.Account.Manage
 @model DotnetAngular.Areas.Identity.Pages.Role.AddModel
 @{
     var btnText = Model.IsUpdate ? "Cập nhật" : "Tạo mới";
 }
-
-
+@{
+    Layout = "../_Layout";
+    ViewData["ActivePage"] = ManageNavPages.Role;
+}
+@*
+"/admin/role/updaterole/{handler?}/"
+*@
 <h4>@ViewData["Title"]</h4>
 <partial name="_StatusMessage" model="@Model.StatusMessage" />
 

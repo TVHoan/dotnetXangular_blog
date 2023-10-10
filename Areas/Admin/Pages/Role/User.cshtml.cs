@@ -39,8 +39,8 @@ namespace DotnetAngular.Areas.Identity.Pages.Role;
         public async Task<IActionResult> OnGet()
         {
 
-            var cuser = await _userManager.GetUserAsync(User);
-            await _userManager.AddToRolesAsync(cuser, new string[] { "Editor" });
+            // var cuser = await _userManager.GetLoginsAsync(users);
+            // await _userManager.AddToRolesAsync(cuser, new string[] { "Editor" });
 
             if (pageNumber == 0)
                 pageNumber = 1;

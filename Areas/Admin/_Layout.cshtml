@@ -1,0 +1,241 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using DotnetAngular.Models;
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    string? returnUrl = null;
+    var query = ViewContext.HttpContext.Request.Query;
+    if (query.ContainsKey("returnUrl"))
+    {
+        returnUrl = query["returnUrl"];
+    }
+}
+
+
+@*
+<h1>Manage your account</h1>
+*@
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DotnetAngular</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/Identity/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/Identity/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+              integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"
+              
+              asp-fallback-href="~/Identity/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/Identity/css/site.css" asp-append-version="true" />
+    </environment>
+    <style>
+    @@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+    
+    body {
+      overflow-x: hidden;
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+    }
+    
+    /* Toggle Styles */
+    
+    #viewport {
+      padding-left: 250px;
+      -webkit-transition: all 0.5s ease;
+      -moz-transition: all 0.5s ease;
+      -o-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+    }
+    
+    #content {
+      width: 100%;
+      position: relative;
+      margin-right: 0;
+    }
+    
+    /* Sidebar Styles */
+    
+    #sidebar {
+      z-index: 1000;
+      position: fixed;
+      left: 250px;
+      width: 250px;
+      height: 100%;
+      margin-left: -250px;
+      overflow-y: auto;
+      background: #37474F;
+      -webkit-transition: all 0.5s ease;
+      -moz-transition: all 0.5s ease;
+      -o-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+    }
+    
+    #sidebar header {
+      background-color: #263238;
+      font-size: 20px;
+      line-height: 52px;
+      text-align: center;
+    }
+    
+    #sidebar header a {
+      color: #fff;
+      display: block;
+      text-decoration: none;
+    }
+    
+    #sidebar header a:hover {
+      color: #fff;
+    }
+    
+    #sidebar .nav{
+      
+    }
+    
+    #sidebar .nav a{
+      background: none;
+      border-bottom: 1px solid #455A64;
+      color: #CFD8DC;
+      font-size: 14px;
+      padding: 16px 24px;
+    }
+    
+    #sidebar .nav a:hover{
+      background: none;
+      color: #ECEFF1;
+    }
+    
+    #sidebar .nav a i{
+      margin-right: 16px;
+    }
+    </style>
+</head>
+<body>
+
+<div id="viewport">
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <header>
+      <a href="#">My App</a>
+    </header>
+    <ul class="nav">
+      <li>
+        <a href="#">
+          <i class="zmdi zmdi-view-dashboard"></i> Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="zmdi zmdi-link"></i> Shortcuts
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="zmdi zmdi-widgets"></i> Overview
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="zmdi zmdi-calendar"></i> Events
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="zmdi zmdi-info-outline"></i> About
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="zmdi zmdi-settings"></i> Services
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="zmdi zmdi-comment-more"></i> Contact
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!-- Content -->
+  <div id="content">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right">
+            @* <li> *@
+            @*   <a href="#"><i class="zmdi zmdi-notifications text-danger"></i> *@
+            @*   </a> *@
+            @* </li> *@
+            @* <li><a href="#">Test User</a></li> *@
+             @if (SignInManager.IsSignedIn(User))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity!.Name!</a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/">
+                            <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                        </form>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register" asp-route-returnUrl="@returnUrl">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login" asp-route-returnUrl="@returnUrl">Login</a>
+                    </li>
+                }
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      @RenderBody()
+    </div>
+  </div>
+</div>
+
+
+
+<footer class="footer border-top pl-3 text-muted">
+        <div class="container">
+        &copy; 2023 - DotnetAngular
+            @{
+                var foundPrivacy = Url.Page("/Privacy", new { area = "" });
+            }
+            @if (foundPrivacy != null)
+            {
+                <a asp-area="" asp-page="/Privacy">Privacy</a>
+            }
+        </div>
+    </footer>
+
+    <environment include="Development">
+        <script src="~/Identity/lib/jquery/dist/jquery.js"></script>
+        <script src="~/Identity/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="~/Identity/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+                asp-fallback-src="~/Identity/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/Identity/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj">
+        </script>
+        <script src="~/Identity/js/site.js" asp-append-version="true"></script>
+    </environment>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

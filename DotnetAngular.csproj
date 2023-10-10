@@ -611,6 +611,17 @@
 
   <ItemGroup>
     <Folder Include="Areas\" />
+    <Folder Include="Areas\Admin\Pages" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="Areas\Admin\Pages\Role\Add.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Pages\Role\AddUserRole.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Pages\Role\Delete.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Pages\Role\Index.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Pages\Role\User.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Pages\Role\_StatusMessage.cshtml" />
+    <AdditionalFiles Include="Areas\Admin\Pages\Role\_ViewImports.cshtml" />
   </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
