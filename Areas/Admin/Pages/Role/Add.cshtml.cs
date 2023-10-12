@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace DotnetAngular.Areas.Identity.Pages.Role;
+namespace DotnetAngular.Areas.Admin.Pages.Role;
 
  public class AddModel : PageModel {
         private readonly RoleManager<IdentityRole> _roleManager;

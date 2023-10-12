@@ -1,6 +1,7 @@
 using DotnetAngular.Data;
 using DotnetAngular.Models;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +17,11 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
-
+builder.Services.Configure<CookieAuthenticationOptions>(options =>
+{
+    options.AccessDeniedPath = new PathString("/Identity/Account/AccessDenied");
+    options.LoginPath = new PathString("/Identity/Account/Login");
+});
 builder.Services.AddIdentityServer()
     .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
@@ -24,7 +29,12 @@ builder.Services.AddAuthentication()
     .AddIdentityServerJwt();
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages(options =>
+{
+    /*
+    options.Conventions.AuthorizeAreaFolder("Admin","/");
+*/
+});
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -56,11 +66,20 @@ app.UseAuthentication();
 app.UseIdentityServer();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
-app.MapRazorPages();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name : "areas",
+        pattern : "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller}/{action=Index}/{id?}");
+    endpoints.MapRazorPages();
+    endpoints.MapFallbackToFile("index.html");
 
-app.MapFallbackToFile("index.html");
+});
+
+
 
 app.Run();

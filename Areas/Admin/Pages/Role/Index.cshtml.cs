@@ -1,10 +1,10 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace DotnetAngular.Areas.Identity.Pages.Role;
-
+namespace DotnetAngular.Areas.Admin.Pages.Role;
 
     public class IndexRoleModel : PageModel
     {

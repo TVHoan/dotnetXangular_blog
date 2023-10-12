@@ -1,10 +1,11 @@
+using DotnetAngular.Data;
 using DotnetAngular.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace DotnetAngular.Areas.Identity.Pages.Role;
+namespace DotnetAngular.Areas.Admin.Pages.Role;
 
 
     public class UserModel : PageModel
@@ -12,12 +13,15 @@ namespace DotnetAngular.Areas.Identity.Pages.Role;
         const int USER_PER_PAGE = 10;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ApplicationDbContext _context;
 
         public UserModel(RoleManager<IdentityRole> roleManager,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            ApplicationDbContext context)
         {
             _roleManager = roleManager;
             _userManager = userManager;
+            _context = context;
         }
 
         public class UserInList : ApplicationUser
@@ -45,7 +49,7 @@ namespace DotnetAngular.Areas.Identity.Pages.Role;
             if (pageNumber == 0)
                 pageNumber = 1;
 
-            var lusers = (from u in _userManager.Users
+            var lusers = (from u in _context.Users
                 orderby u.UserName
                 select new UserInList()
                 {

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Build.Framework;
 using Microsoft.EntityFrameworkCore;
 
-namespace DotnetAngular.Areas.Identity.Pages.Role;
+namespace DotnetAngular.Areas.Admin.Pages.Role;
 
  public class AddUserRole : PageModel {
     private readonly RoleManager<IdentityRole> _roleManager;
