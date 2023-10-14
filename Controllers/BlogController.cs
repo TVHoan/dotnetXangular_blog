@@ -1,6 +1,7 @@
 using DotnetAngular.Data;
 using DotnetAngular.Dto;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DotnetAngular.Controllers;
 [ApiController]
@@ -88,6 +89,7 @@ public class BlogController: ControllerBase
 
         }).ToArray();
     }
+
    
     [HttpGet]
     [Route("api/blogdetailcontent")]
@@ -101,4 +103,12 @@ public class BlogController: ControllerBase
     {
         return comments.Where(x=>x.PostId==Postid).ToArray() ;
     }
+    [HttpPost]
+    [Route("api/post/create")]
+    public async Task<int> CreatePost([FromBody]PostInputDto input)
+    {
+        return await _context.Database.ExecuteSqlRawAsync("EXEC  CreatePost @Title @Createdat @Content @Imageurl @PostTypeId",
+             input.Title, DateTime.Now, input.Content, input.Imageurl, input.PostTypeId);
+    }
+
 }
