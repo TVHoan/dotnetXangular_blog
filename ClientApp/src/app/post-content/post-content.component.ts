@@ -1,6 +1,7 @@
-import {Component, Inject, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute} from "@angular/router";
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-post-content',
@@ -8,7 +9,9 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./post-content.component.css']
 })
 export class PostContentComponent implements OnInit,OnChanges{
-  @Input() getmore : boolean
+  @Input() eventEmitter: EventEmitter<void> | undefined
+  @Input('clickSubject')
+    clickSubject!: Subject<any>;
   public content: ContentPost[] = []
   public baseUrl: string = ""
   public http: HttpClient | undefined
@@ -16,26 +19,29 @@ export class PostContentComponent implements OnInit,OnChanges{
   constructor(http: HttpClient, @Inject("BASE_URL") baseUrl :string) {
     this.http = http;
     this.baseUrl = baseUrl;
-    this.getmore = false
 
   }
   ngOnChanges(changes: SimpleChanges): void {
-console.log(changes)
+/*console.log(changes)
     if (changes.getmore.currentValue===true){
       this.GetMore()
-      this.getmore = false
-    }
+    }*/
 
   }
-  GetMore(){
-    this.http?.get<ContentPost[]>(this?.baseUrl + 'api/aboutcontent?take='+this.content.length+2).subscribe(result => {
+  GetMore(): void {
+    let lengthpost = this.content.length + 2;
+    this.http?.get<ContentPost[]>(this?.baseUrl + 'api/aboutcontent?take=' + lengthpost).subscribe(result => {
       this.content = result;
+      console.log("get")
     }, error => console.error(error));
   }
   ngOnInit(): void {
     this.http?.get<ContentPost[]>(this?.baseUrl + 'api/aboutcontent').subscribe(result => {
       this.content = result;
     }, error => console.error(error));
+/*    this.eventEmitter?.subscribe(() => this.GetMore())
+*/    this.clickSubject.subscribe(e => this.GetMore());
+
   }
 
 

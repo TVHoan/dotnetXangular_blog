@@ -1,0 +1,57 @@
+﻿@page
+@model DotnetAngular.Areas.Identity.Pages.Account.Post.IndexModel
+@{
+}
+<h4>@ViewData["Title"]</h4>
+<partial name="_StatusMessage" model="@Model.StatusMessage" />
+<div class=" mb-3">
+    <a class="btn btn-primary" asp-page="./Add">Thêm Post</a>
+
+</div>
+
+<table class="table table-striped">
+    <tr>
+        <th>Title</th>
+        <th>CreatedAt</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var post in @Model.posts)
+    {
+        <tr>
+            <td>@post.Title</td>
+            <td>@post.Createdat</td>
+            <td>
+                   <a  asp-route-id="@post.Id"  class="btn btn-primary btn-sm"
+                        asp-page="./Add">
+                        Cập nhật post
+                    </a>
+                <a  asp-route-id="@post.Id" class="btn btn-primary btn-sm"
+                     asp-page="./Delete">
+                    xóa
+                </a>
+            </td>
+        </tr>
+
+    }
+</table>
+
+@{
+    Func<int?, string> generateUrl = (int? _pagenumber) =>
+    {
+        return Url.Page("./Index", new { pageNumber = _pagenumber });
+    };
+
+    var datapaging = new
+    {
+        currentPage = Model.Pagenumber,
+        countPages = Model.Total,
+        generateUrl = generateUrl
+    };
+
+}
+<partial name="_Paging" model="@datapaging" />
+<paging total-records="Model.Total"
+        page-size="int.Parse(Model.Take.ToString())"
+        page-no="Model.Pagenumber"
+        query-string-value="@(Request.QueryString.Value)">
+</paging>

@@ -1,4 +1,4 @@
-<div class="row" >
+<div class="row">
   <div class="col-md-6">
     <img src="{{content?.imageurl}}" alt="#" />
   </div>
@@ -6,9 +6,9 @@
     <div class="full blog_cont">
       <h4>{{content?.title}}</h4>
       <h5>{{content?.createdat}}</h5>
-        </div>
+    </div>
   </div>
 </div>
-<p>{{content?.content}}</p>
+<div [innerHTML]="content?.content">  </div>
 <app-comment [postid]="id"></app-comment>
 

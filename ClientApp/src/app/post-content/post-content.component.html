@@ -6,6 +6,6 @@
     <div class="full blog_cont">
       <h4><a [routerLink]='["/blogdetail"]' [queryParams]="{id : item.id}">{{item.title}}</a> </h4>
       <h5>{{item.createdat}}</h5>
-      <p>{{item.content}}</p>  </div>
+      <div [innerHTML]="item.content">  </div>
   </div>
 </div>

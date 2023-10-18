@@ -1,0 +1,58 @@
+﻿@page
+@model DotnetAngular.Areas.Identity.Pages.Account.Slide.AddModel
+@{
+    string textbutton = "" ;
+    if (Model.Id == null)
+    {
+        textbutton = "Thêm Slide";
+    }
+    else
+    {
+        textbutton = "Sửa Slide"; ;
+    }
+}
+
+<div class="row mb-3">
+    <a asp-page="./Index">
+        Danh sách Slide<i class="fa fa-arrow-left" aria-hidden="true"></i>
+    </a>
+
+</div>
+@*<div class="row">
+    <div class="col-md-6">*@
+        <form method="post" enctype="multipart/form-data">
+@*            <div asp-validation-summary="All" class="text-danger"></div>
+*@            <input asp-for="Id" hidden />
+            <input asp-for="urlimage" hidden />
+    <div class=" mb-3">
+            <div class=" row form-group col">
+                <div class="col">
+                    <label asp-for="Slide.Image"></label>
+                    <input asp-for="Slide.Image" value="@Model.Slide.Image" class="form-control">
+                    <span asp-validation-for="Slide.Image" class="text-danger"></span>
+                </div>
+            <div class="col">
+            @if (Model.urlimage != null && Model.urlimage != "")
+            {
+                <img style="max-height:auto; max-width:200px" src="/@Model.urlimage">
+            }
+            </div>
+            </div>
+            <div class="form-group col">
+                <label asp-for="Slide.Active"></label>
+            <input type="checkbox" asp-for="Slide.Active"  class="form-check-input">
+            <span asp-validation-for="Slide.Active" class="text-danger"></span>
+                
+            </div>
+
+            </div>
+
+    <div class="form-group">
+            <button type="submit"
+                   class="btn btn-primary">
+                    @textbutton
+        </button>
+            </div>
+
+        </form>
+

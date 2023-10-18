@@ -1,3 +1,5 @@
+using DotnetAngular.Contract;
+using DotnetAngular.Controllers;
 using DotnetAngular.Data;
 using DotnetAngular.Models;
 using Microsoft.AspNetCore.Authentication;
@@ -14,6 +16,10 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.AddScoped<IBlogController,BlogController>();
+builder.Services.AddScoped<ISlideController,SlideController>();
+
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
@@ -58,27 +64,26 @@ else
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 app.UseRouting();
-
+app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseIdentityServer();
 app.UseAuthorization();
-
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
-        name : "areas",
-        pattern : "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+        name: "areas",
+        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
     );
-    endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{controller}/{action=Index}/{id?}");
     endpoints.MapRazorPages();
     endpoints.MapFallbackToFile("index.html");
 
 });
+
+
+
 
 
 

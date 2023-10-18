@@ -1,0 +1,82 @@
+﻿@page
+@model DotnetAngular.Areas.Identity.Pages.Account.Post.AddModel
+@{
+    string textbutton = "" ;
+    if (Model.Id == null)
+    {
+        textbutton = "Thêm bài viết";
+    }
+    else
+    {
+        textbutton = "Sửa bài viết"; ;
+    }
+}
+<style>
+    .ck-editor__editable[role="textbox"] {
+        /* editing area */
+        min-height: 200px;
+    }
+
+    .ck-content .image {
+        /* block images */
+        max-width: 80%;
+        margin: 20px auto;
+    }
+</style>
+<div class="row mb-3">
+    <a asp-page="./Index">
+        Danh sách bài viết<i class="fa fa-arrow-left" aria-hidden="true"></i>
+    </a>
+
+</div>
+@*<div class="row">
+    <div class="col-md-6">*@
+        <form method="post" enctype="multipart/form-data">
+@*            <div asp-validation-summary="All" class="text-danger"></div>
+*@            <input asp-for="Id" hidden />
+            <input asp-for="urlimage" hidden />
+    <div class="row mb-3">
+            <div class="form-group col">
+                <label asp-for="Post.Title"></label>
+                <input asp-for="Post.Title" value="@Model.Post.Title" class="form-control">
+            <span asp-validation-for="Post.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group col">
+                <label asp-for="Post.Imageurl"></label>
+                <input asp-for="Post.Imageurl" class="form-control">
+            <span asp-validation-for="Post.Imageurl" class="text-danger"></span>
+                
+            </div>
+        @if (Model.urlimage != null)
+        {
+            <img style="max-height:auto; max-width:200px" src="/@Model.urlimage">
+        }
+            </div>
+    <div class="form-group mb-3">
+                <label asp-for="Post.Content"></label>
+                <textarea asp-for="Post.Content" class="form-control" id="editor"> </textarea>
+        <span asp-validation-for="Post.Content" class="text-danger"></span>
+                
+            </div>
+
+    <div class="form-group">
+            <button type="submit"
+                   class="btn btn-primary">
+                    @textbutton
+        </button>
+            </div>
+
+        </form>
+@*    </div>
+</div>*@
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'), {            
+                ckfinder: {
+                uploadUrl: '/api/uploadfile'
+                }   
+            })
+        .catch(error => {
+            console.error(error);
+        });
+</script>

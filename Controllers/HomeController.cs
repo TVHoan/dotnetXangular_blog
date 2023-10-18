@@ -28,7 +28,7 @@ public class HomeController: ControllerBase
     [HttpGet("api/bannerslide")]
     public SlideDto[] GetSlides()
     {
-       var data =  _context.Slides.ToList();
+       var data =  _context.Slides.Where(x=>x.Active==true).ToList();
         return data.Select(x=> new SlideDto
         {   
             Urlimage = x.Urlimage,

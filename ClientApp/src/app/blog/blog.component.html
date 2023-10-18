@@ -7,7 +7,7 @@
         </div>
       </div>
     </div>
-    <app-post-content [getmore]="this.getmore"></app-post-content>
+    <app-post-content [eventEmitter]="parentEmitter" [clickSubject]="clickSubject" ></app-post-content>
 
     <div class="row margin_top_30">
       <div class="col-md-12">

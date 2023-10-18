@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-blog',
@@ -6,12 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./blog.component.css']
 })
 export class BlogComponent {
-  public getmore : boolean = false
-
+  parentEmitter = new EventEmitter<void>(); 
+  clickSubject: Subject<any> = new Subject();
 
   constructor() {
   }
   Getmore(){
-    this.getmore = true;
+    this.parentEmitter.emit()
+    this.clickSubject.next(1);
   }
 }
