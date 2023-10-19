@@ -1,14 +1,24 @@
 ﻿@page
 @model DotnetAngular.Areas.Identity.Pages.Account.Post.IndexModel
 @{
+    Layout = "_Layout";
 }
-<h4>@ViewData["Title"]</h4>
-<partial name="_StatusMessage" model="@Model.StatusMessage" />
-<div class=" mb-3">
-    <a class="btn btn-primary" asp-page="./Add">Thêm Post</a>
+@*<div class="row mb-3 ">
+    <a class="btn btn-primary float-left"  asp-page="./Add">Thêm Post</a>
+    <partial name="_StatusMessage" model="@Model.StatusMessage" />
 
+</div>*@
+<div class="card-header">
+    <a class="btn btn-primary float-left" asp-page="./Add">Thêm Post</a>
+    <button data-title="Thêm Post" data-link="/Identity/Account/Post/Add" type="button" class="btn btn-primary float-right" data-bs-toggle="modal" data-bs-target="#modalform"
+            data-whatever="@@mdo">
+        Thêm Post
+    </button>
+    <partial name="_StatusMessage" model="@Model.StatusMessage" />
 </div>
+<div class="card-body">
 
+<div class="row table-responsive">
 <table class="table table-striped">
     <tr>
         <th>Title</th>
@@ -34,24 +44,25 @@
 
     }
 </table>
+    @{
+        Func<int?, string> generateUrl = (int? _pagenumber) =>
+        {
+            return Url.Page("./Index", new { pageNumber = _pagenumber });
+        };
 
-@{
-    Func<int?, string> generateUrl = (int? _pagenumber) =>
-    {
-        return Url.Page("./Index", new { pageNumber = _pagenumber });
-    };
+        var datapaging = new
+        {
+            currentPage = Model.Pagenumber,
+            countPages = Model.Total,
+            generateUrl = generateUrl
+        };
 
-    var datapaging = new
-    {
-        currentPage = Model.Pagenumber,
-        countPages = Model.Total,
-        generateUrl = generateUrl
-    };
-
-}
-<partial name="_Paging" model="@datapaging" />
-<paging total-records="Model.Total"
-        page-size="int.Parse(Model.Take.ToString())"
-        page-no="Model.Pagenumber"
-        query-string-value="@(Request.QueryString.Value)">
-</paging>
+    }
+    <partial name="_Paging" model="@datapaging" />
+    <paging total-records="Model.Total"
+            page-size="int.Parse(Model.Take.ToString())"
+            page-no="Model.Pagenumber"
+            query-string-value="@(Request.QueryString.Value)">
+    </paging>
+</div>
+</div>

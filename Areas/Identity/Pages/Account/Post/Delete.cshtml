@@ -1,19 +1,24 @@
 ﻿@page
 @model DotnetAngular.Areas.Identity.Pages.Account.Post.DeleteModel
 @{
+    Layout = "_Layout";
 }
-<div class="row mb-3">
+<div class="card-header">
     <a asp-page="./Index">
         Danh sách bài viết<i class="fa fa-arrow-left" aria-hidden="true"></i>
     </a>
+</div>
+<div class="row mb-3">
+
 
 </div>
-@*<div class="row">
-    <div class="col-md-6">*@
-<form method="post" enctype="multipart/form-data">
+<div class="card-body">
+    <p class="text-danger">Bạn có chắc chắn muốn xóa</p>
+
+    <form method="post" enctype="multipart/form-data">
     @*            <div asp-validation-summary="All" class="text-danger"></div>
     *@            <input asp-for="Id" hidden />
-    Bạn có chắc chắn muốn xóa
+
 
 
     <div class="form-group">
@@ -24,3 +29,4 @@
     </div>
 
 </form>
+</div>

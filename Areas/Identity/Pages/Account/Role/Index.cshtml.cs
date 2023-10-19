@@ -5,8 +5,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace  DotnetAngular.Areas.Identity.Pages.Account.Role;
+[Authorize(Roles = "admin")]
 
-    public class IndexRoleModel : PageModel
+public class IndexRoleModel : PageModel
     {
         private readonly RoleManager<IdentityRole> _roleManager;
 

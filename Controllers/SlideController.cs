@@ -2,8 +2,10 @@
 using DotnetAngular.Data;
 using DotnetAngular.Dto;
 using DotnetAngular.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace DotnetAngular.Controllers
 {
@@ -17,7 +19,9 @@ namespace DotnetAngular.Controllers
             _context = context;
         }
         [HttpGet]
-        [Route("api/slide")]
+        [Route("api/slides")]
+        [Authorize(Roles = "admin")]
+
         public async Task<SlideDto[]> GetListAsync([FromQuery] InputDto input)
         {
             var data = await _context.Slides.Skip(input.Skip ?? 0).Take(input.Take ?? 3).ToArrayAsync();
@@ -30,13 +34,17 @@ namespace DotnetAngular.Controllers
             }).ToArray();
         }
         [HttpGet]
-        [Route("api/blogdetailcontent")]
+        [Route("api/slide")]
+        [Authorize(Roles = "admin")]
+
         public async Task<Slide> GetAsync([FromQuery] int id)
         {
             return await _context.Slides.FirstOrDefaultAsync(x => x.Id == id);
         }
         [HttpPost]
         [Route("api/slide/create")]
+        [Authorize(Roles = "admin")]
+
         public async Task CreateAsync([FromBody] SlideDto input)
         {
              await _context.AddAsync(new Slide { Urlimage=input.Urlimage,Active=input.Active});
@@ -44,6 +52,8 @@ namespace DotnetAngular.Controllers
         }
         [HttpPost]
         [Route("api/slide/update")]
+        [Authorize(Roles = "admin")]
+
         public async Task UpdateAsync([FromQuery] int id, [FromBody] SlideDto input)
         {
             Slide slide = await _context.Slides.FindAsync(id);
@@ -57,6 +67,8 @@ namespace DotnetAngular.Controllers
         }
         [HttpPost]
         [Route("api/post/delete")]
+        [Authorize(Roles = "admin")]
+
         public async Task DeleteAsync([FromQuery] int id)
         {
             Slide slide = await _context.Slides.FindAsync(id);

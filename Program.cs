@@ -1,6 +1,7 @@
 using DotnetAngular.Contract;
 using DotnetAngular.Controllers;
 using DotnetAngular.Data;
+using DotnetAngular.Data.Migrations;
 using DotnetAngular.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -17,12 +18,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+
 builder.Services.AddScoped<IBlogController,BlogController>();
 builder.Services.AddScoped<ISlideController,SlideController>();
-
-
+builder.Services.AddTransient<DbContextSeedData>();
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddHostedService<SetupIdentityDataSeeder>();
+
 builder.Services.Configure<CookieAuthenticationOptions>(options =>
 {
     options.AccessDeniedPath = new PathString("/Identity/Account/AccessDenied");
@@ -88,3 +91,7 @@ app.UseEndpoints(endpoints =>
 
 
 app.Run();
+ void Configure(IApplicationBuilder app , DbContextSeedData seeder)
+{
+    seeder.SeedAdminUser();
+}

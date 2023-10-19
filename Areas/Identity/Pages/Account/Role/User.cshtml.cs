@@ -1,14 +1,17 @@
 using DotnetAngular.Data;
 using DotnetAngular.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace  DotnetAngular.Areas.Identity.Pages.Account.Role;
 
+[Authorize(Roles = "admin")]
 
-    public class UserModel : PageModel
+public class UserModel : PageModel
     {
         const int USER_PER_PAGE = 10;
         private readonly RoleManager<IdentityRole> _roleManager;

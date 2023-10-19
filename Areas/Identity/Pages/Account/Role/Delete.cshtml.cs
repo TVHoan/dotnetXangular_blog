@@ -1,9 +1,13 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Build.Framework;
+using System.Data;
 
 namespace  DotnetAngular.Areas.Identity.Pages.Account.Role;
+
+[Authorize(Roles = "admin")]
 
 public class DeleteModel : PageModel {
     private readonly RoleManager<IdentityRole> _roleManager;

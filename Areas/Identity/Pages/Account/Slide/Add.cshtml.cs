@@ -1,12 +1,16 @@
 ﻿using DotnetAngular.Contract;
 using DotnetAngular.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 
 namespace DotnetAngular.Areas.Identity.Pages.Account.Slide
 {
+    [Authorize(Roles = "admin")]
+
     public class AddModel : PageModel
     {
         private readonly ISlideController _slide;

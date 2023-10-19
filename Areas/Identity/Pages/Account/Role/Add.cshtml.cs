@@ -1,11 +1,14 @@
 using System.ComponentModel.DataAnnotations;
+using System.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace DotnetAngular.Areas.Identity.Pages.Account.Role;
+[Authorize(Roles = "admin")]
 
- public class AddModel : PageModel {
+public class AddModel : PageModel {
         private readonly RoleManager<IdentityRole> _roleManager;
 
         public AddModel (RoleManager<IdentityRole> roleManager) {

@@ -1,10 +1,12 @@
 ﻿using DotnetAngular.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotnetAngular.Controllers
 {
     [ApiController]
     public class FileController: ControllerBase {
+        [Authorize(Roles ="admin")]
         [HttpPost]
         [Route("api/uploadfile")]
         public async Task<FileUploadDto> UploadFile(IFormFile upload)
@@ -18,9 +20,13 @@ namespace DotnetAngular.Controllers
                 {
                     await upload.CopyToAsync(stream);
                 }
-                return new FileUploadDto { Default = "https://localhost:44498/uploads/images/" + fileName };
+                return new FileUploadDto { Default = "https://localhost:44498/uploads/images/" + fileName,
+                                            Uploaded = true,
+                                            Url = "https://localhost:44498/uploads/images/" + fileName
+                };
             }
-            return new FileUploadDto { Default = string.Empty };
+            return new FileUploadDto { Default = string.Empty
+            };
         }
     }
 }

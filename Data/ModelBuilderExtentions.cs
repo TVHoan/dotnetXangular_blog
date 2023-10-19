@@ -1,6 +1,8 @@
 ﻿using DotnetAngular.Dto;
 using DotnetAngular.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace DotnetAngular.Data
 {

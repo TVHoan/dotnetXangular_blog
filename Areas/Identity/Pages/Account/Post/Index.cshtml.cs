@@ -1,12 +1,16 @@
 using DotnetAngular.Contract;
 using DotnetAngular.Controllers;
 using DotnetAngular.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data;
 using static DotnetAngular.Areas.Identity.Pages.Account.Role.UserModel;
 
 namespace DotnetAngular.Areas.Identity.Pages.Account.Post
 {
+    [Authorize(Roles = "admin")]
+
     public class IndexModel : PageModel
     {
         public IndexModel(IBlogController   blog)
@@ -39,5 +43,7 @@ namespace DotnetAngular.Areas.Identity.Pages.Account.Post
                 Total = total;
             }
         }
+        public async Task OnPostAsync() => await OnGetAsync();
+
     }
 }

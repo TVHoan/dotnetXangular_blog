@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DotnetAngular.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231009075727_post-posttype-comment-slide-seeding")]
-    partial class postposttypecommentslideseeding
+    [Migration("20231019030338_Init-add-table-seeding")]
+    partial class Initaddtableseeding
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -123,7 +123,7 @@ namespace DotnetAngular.Data.Migrations
                         {
                             Id = 1,
                             Content = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
-                            Createdat = new DateTime(2023, 10, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            Createdat = new DateTime(2023, 10, 19, 0, 0, 0, 0, DateTimeKind.Local),
                             Name = "Veniam - Veniam@gmail.com",
                             PostId = 1
                         },
@@ -131,7 +131,7 @@ namespace DotnetAngular.Data.Migrations
                         {
                             Id = 2,
                             Content = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
-                            Createdat = new DateTime(2023, 10, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            Createdat = new DateTime(2023, 10, 19, 0, 0, 0, 0, DateTimeKind.Local),
                             Name = "Jack - Jack@gmail.com",
                             PostId = 1
                         });
@@ -174,7 +174,7 @@ namespace DotnetAngular.Data.Migrations
                         {
                             Id = 1,
                             Content = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.",
-                            Createdat = new DateTime(2023, 10, 9, 14, 57, 26, 911, DateTimeKind.Local).AddTicks(7192),
+                            Createdat = new DateTime(2023, 10, 19, 10, 3, 38, 251, DateTimeKind.Local).AddTicks(356),
                             Imageurl = "./assets/images/blog1.png",
                             Title = "The biggest and most awesome camera of year"
                         },
@@ -182,7 +182,7 @@ namespace DotnetAngular.Data.Migrations
                         {
                             Id = 2,
                             Content = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.",
-                            Createdat = new DateTime(2023, 10, 9, 14, 57, 26, 911, DateTimeKind.Local).AddTicks(7203),
+                            Createdat = new DateTime(2023, 10, 19, 10, 3, 38, 251, DateTimeKind.Local).AddTicks(367),
                             Imageurl = "./assets/images/blog2.png",
                             Title = "What 3 years of android taught me the hard way"
                         },
@@ -190,7 +190,7 @@ namespace DotnetAngular.Data.Migrations
                         {
                             Id = 3,
                             Content = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.",
-                            Createdat = new DateTime(2023, 10, 9, 14, 57, 26, 911, DateTimeKind.Local).AddTicks(7204),
+                            Createdat = new DateTime(2023, 10, 19, 10, 3, 38, 251, DateTimeKind.Local).AddTicks(368),
                             Imageurl = "./assets/images/blog1.png",
                             Title = " 2 The biggest and most awesome camera of year"
                         },
@@ -198,7 +198,7 @@ namespace DotnetAngular.Data.Migrations
                         {
                             Id = 4,
                             Content = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.",
-                            Createdat = new DateTime(2023, 10, 9, 14, 57, 26, 911, DateTimeKind.Local).AddTicks(7205),
+                            Createdat = new DateTime(2023, 10, 19, 10, 3, 38, 251, DateTimeKind.Local).AddTicks(369),
                             Imageurl = "./assets/images/blog2.png",
                             Title = " 2 What 3 years of android taught me the hard way"
                         },
@@ -206,7 +206,7 @@ namespace DotnetAngular.Data.Migrations
                         {
                             Id = 5,
                             Content = "<div class=\"section layout_padding dark_bg\">\r\n  <div class=\"container\">\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-6\">\r\n        <img src=\"images/marketing_img.png\" alt=\"#\" />\r\n      </div>\r\n      <div class=\"col-md-6\">\r\n        <div class=\"full blog_cont\">\r\n          <h3 class=\"white_font\">Where can I get some</h3>\r\n          <h5 class=\"grey_font\">March 19 2019 5 READ</h5>\r\n          <p class=\"white_font\">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined g to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator..</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</div>\r\n<div class=\"section layout_padding\">\r\n  <div class=\"container\">\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-6\">\r\n        <div class=\"full blog_cont\">\r\n          <h3>Where can I get some</h3>\r\n          <h5>March 19 2019 5 READ</h5>\r\n          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined g to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator..</p>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-6\">\r\n        <img src=\"assets/images/marketing_img.png\" alt=\"#\" />\r\n      </div>\r\n\r\n    </div>\r\n  </div>\r\n</div>",
-                            Createdat = new DateTime(2023, 10, 9, 14, 57, 26, 911, DateTimeKind.Local).AddTicks(7206),
+                            Createdat = new DateTime(2023, 10, 19, 10, 3, 38, 251, DateTimeKind.Local).AddTicks(370),
                             Imageurl = "",
                             PostTypeId = 1,
                             Title = "About"

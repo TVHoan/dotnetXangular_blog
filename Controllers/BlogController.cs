@@ -2,9 +2,11 @@ using DotnetAngular.Contract;
 using DotnetAngular.Data;
 using DotnetAngular.Dto;
 using DotnetAngular.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using System.Linq.Dynamic.Core;
 namespace DotnetAngular.Controllers;
 [ApiController]
@@ -36,6 +38,8 @@ public class BlogController: ControllerBase,IBlogController
     }
     [HttpGet]
     [Route("api/post")]
+    [Authorize(Roles = "admin")]
+
     public async Task<PostDto[]> GetListAsync([FromQuery] InputDto input)
     {
 
@@ -53,6 +57,8 @@ public class BlogController: ControllerBase,IBlogController
     }
     [HttpGet]
     [Route("api/totalpost")]
+    [Authorize(Roles = "admin")]
+
     public async Task<int> CountTotalPost()
     {
         return await _context.Posts.CountAsync();
@@ -88,6 +94,8 @@ public class BlogController: ControllerBase,IBlogController
     }
     [HttpPost]
     [Route("api/post/create")]
+    [Authorize(Roles = "admin")]
+
     public async Task<int> CreatePost([FromBody]PostInputDto input)
     {
         return await _context.Database
@@ -95,6 +103,8 @@ public class BlogController: ControllerBase,IBlogController
     }
     [HttpPost]
     [Route("api/post/update")]
+    [Authorize(Roles = "admin")]
+
     public async Task Update([FromQuery]int id, [FromBody] PostInputDto input)
     {
         Post post = await _context.Posts.FindAsync(id);
@@ -109,6 +119,8 @@ public class BlogController: ControllerBase,IBlogController
     }
     [HttpPost]
     [Route("api/post/delete")]
+    [Authorize(Roles = "admin")]
+
     public async Task Delete([FromQuery] int id)
     {
         Post post = await _context.Posts.FindAsync(id);
@@ -120,6 +132,8 @@ public class BlogController: ControllerBase,IBlogController
 
     [HttpPost]
     [Route("api/post/uploadfile")]
+    [Authorize(Roles = "admin")]
+
     public async Task<string?> UploadFile(IFormFile file)
     {
         if (file != null & file.Length > 0)

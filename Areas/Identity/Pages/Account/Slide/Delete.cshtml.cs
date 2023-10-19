@@ -1,9 +1,13 @@
 using DotnetAngular.Contract;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data;
 
 namespace DotnetAngular.Areas.Identity.Pages.Account.Slide
 {
+    [Authorize(Roles = "admin")]
+
     public class DeleteModel : PageModel
     {
         private readonly ISlideController _slide;
