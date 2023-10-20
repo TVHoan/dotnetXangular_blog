@@ -9,7 +9,6 @@
 
 </div>*@
 <div class="card-header">
-    <a class="btn btn-primary float-left" asp-page="./Add">Thêm Post</a>
     <button data-title="Thêm Post" data-link="/Identity/Account/Post/Add" type="button" class="btn btn-primary float-right" data-bs-toggle="modal" data-bs-target="#modalform"
             data-whatever="@@mdo">
         Thêm Post
@@ -35,6 +34,10 @@
                         asp-page="./Add">
                         Cập nhật post
                     </a>
+                        <button data-title="Thêm Post" data-link="/Identity/Account/Post/Add?id=@post.Id" type="button" class="btn btn-primary float-right" data-bs-toggle="modal" data-bs-target="#modalform"
+                        data-whatever="@@mdo">
+                Cập nhật post
+                 </button>
                 <a  asp-route-id="@post.Id" class="btn btn-primary btn-sm"
                      asp-page="./Delete">
                     xóa

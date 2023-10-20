@@ -20,8 +20,8 @@ namespace DotnetAngular.Areas.Identity.Pages.Account.Post
 
         [BindProperty(SupportsGet = true)]
         public int? Id { get; set; }
-        [BindProperty]
-        public string? urlimage { get; set; } = "";
+        [BindProperty(SupportsGet = true)]
+        public string? urlimage { get; set; } 
         public AddModel(IBlogController blog)
         {
             _blog = blog;
@@ -61,7 +61,7 @@ namespace DotnetAngular.Areas.Identity.Pages.Account.Post
                     Content = Post.Content,
                     Imageurl = urlimage,
                 });
-                return Page();
+                return new NoContentResult();
             }
             else
             {   if(Post.Imageurl != null)
@@ -79,7 +79,7 @@ namespace DotnetAngular.Areas.Identity.Pages.Account.Post
                     Content = Post.Content,
                     Imageurl = urlimage,
                 });
-                return RedirectToPage("./Index");
+                return new NoContentResult();
 
             }
         }
