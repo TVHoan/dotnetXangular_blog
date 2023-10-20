@@ -1,12 +1,10 @@
 ﻿@page
 @model DotnetAngular.Areas.Identity.Pages.Account.Post.DeleteModel
 @{
-    Layout = "_Layout";
+    Layout = "";
 }
 <div class="card-header">
-    <a asp-page="./Index">
-        Danh sách bài viết<i class="fa fa-arrow-left" aria-hidden="true"></i>
-    </a>
+
 </div>
 <div class="row mb-3">
 
@@ -15,18 +13,30 @@
 <div class="card-body">
     <p class="text-danger">Bạn có chắc chắn muốn xóa</p>
 
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" action="/Identity/Account/Post/Delete?id=@Model.Id" enctype="multipart/form-data">
     @*            <div asp-validation-summary="All" class="text-danger"></div>
     *@            <input asp-for="Id" hidden />
 
 
 
-    <div class="form-group">
+@*     <div class="form-group">
         <button type="submit"
                 class="btn btn-primary">
                 Xóa
         </button>
-    </div>
+    </div> *@
 
 </form>
 </div>
+<script>
+
+
+    ComfirmOnResult = (data) => {
+        console.log("333" + data)
+        location.reload()
+    }
+    ConfirmOnError = (err) => {
+        console.log("333" + err)
+        location.reload()
+    }
+</script>
