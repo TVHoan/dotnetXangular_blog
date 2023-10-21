@@ -1,4 +1,10 @@
-﻿$('#modalform').on('show.bs.modal', function (event) {
+﻿$.ajaxSetup({
+    headers: {
+        RequestVerificationToken:
+            $('input:hidden[name="__RequestVerificationToken"]').val()
+    }
+});
+$('#modalform').on('show.bs.modal', function (event) {
     var modal = $(this);
     var button = $(event.relatedTarget) // Button that triggered the modal
     var link = event.relatedTarget.dataset.link;

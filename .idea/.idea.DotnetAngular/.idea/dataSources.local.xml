@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="RD-223.8617.53">
+    <data-source name="aspnet-DotnetAngular-53bc9b9d-9d6a-45d4-8429-2a2761773502" uuid="368a3285-0e2f-4798-ba52-45a41f6a3067">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MSSQL_LOCALDB" exact-version="0" />
+      <secret-storage>forget</secret-storage>
+      <schema-mapping />
+    </data-source>
+  </component>
+</project>

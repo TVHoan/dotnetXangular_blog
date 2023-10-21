@@ -34,10 +34,25 @@ builder.Services.Configure<CookieAuthenticationOptions>(options =>
 builder.Services.AddIdentityServer()
     .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
-builder.Services.AddAuthentication()
-    .AddIdentityServerJwt();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = "Cookies";
+})
+    .AddIdentityServerJwt().AddCookie("Cookies", options =>
+    {
+        options.Cookie.Name = "auth_cookie";
+        options.Cookie.SameSite = SameSiteMode.None;
+        options.Events = new CookieAuthenticationEvents
+        {
+            OnRedirectToLogin = redirectContext =>
+            {
+                redirectContext.HttpContext.Response.StatusCode = 401;
+                return Task.CompletedTask;
+            }
+        };
+    });
 
-builder.Services.AddControllersWithViews();
+    builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages(options =>
 {
     /*

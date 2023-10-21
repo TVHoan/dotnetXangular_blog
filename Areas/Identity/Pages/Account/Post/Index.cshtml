@@ -17,14 +17,16 @@
 </div>
 <div class="card-body">
 
-<div class="row table-responsive">
-<table class="table table-striped">
+<div class=" table-responsive">
+        <table class="table table-striped" id="dataTable">
+    <thead>
     <tr>
-        <th>Title</th>
-        <th>CreatedAt</th>
-        <th>Actions</th>
+        <th>Tiêu đề</th>
+        <th>Ngày tạo</th>
+        <th>Hành động</th>
     </tr>
-            @if(@Model.posts.Any()){
+    </thead>
+        @*    @if(@Model.posts.Any()){
             @foreach (var post in @Model.posts)
             {
                 <tr>
@@ -45,7 +47,7 @@
             }
             else{
                 <p>................... </p>
-            }
+            }*@
 
 </table>
     @{
@@ -62,11 +64,57 @@
         };
 
     }
-    <partial name="_Paging" model="@datapaging" />
+@*    <partial name="_Paging" model="@datapaging" />
     <paging total-records="Model.Total"
             page-size="int.Parse(Model.Take.ToString())"
             page-no="Model.Pagenumber"
             query-string-value="@(Request.QueryString.Value)">
-    </paging>
+    </paging>*@
 </div>
 </div>
+@section Scripts{
+    <script>
+    var datatable = $("#dataTable").DataTable({
+        /*            responsive: true,
+                    info: false,*/
+        /*
+                        searching: true,
+        */
+        /*                search: {
+                            regex: false,
+                            value: "name"
+                        },*/
+        processing: true,
+        serverSide: true,
+        order: [],
+        ajax: {
+            url: "https://localhost:44498/api/post",
+            /*                    data: function(d) {
+                                    d.start = d.start;
+                                    d.length = d.length;
+                                    d.search.value = d.search.value;
+                                    d.order[0].column = d.order[0].column;
+                                    d.order[0].dir = d.order[0].dir;
+                                }*/
+        },
+        columnDefs: [
+            { data: "name", title: 'Tiêu đề', targets: 0 },
+            { data: "title", title: 'Ngày tạo', targets: 1 },
+            {
+                width: "1%", className: "text-center", data: "id", title: 'Hành động', targets: 2,
+                render: function (data, type, row, meta) {
+                    return ` <button data-title="Sửa Post" data-link="/Identity/Account/Post/Add?id=${data.id}" type="button" class="btn btn-primary float-right" data-bs-toggle="modal" data-bs-target="#modalform"
+                    data-whatever="@@mdo" >
+                        Cập nhật post
+                            </button>
+                                <button data-title="Xóa Post" data-link="/Identity/Account/Post/Delete?id=${data.id}" type = "button" class="btn btn-primary float-right" data-bs-toggle="modal" data-bs-target="#comfirmform"
+                    data - whatever="@@mdo" >
+                        Xóa
+                        </button>`
+            }
+                        },
+                    ]
+                }
+            );
+    </script>
+}
