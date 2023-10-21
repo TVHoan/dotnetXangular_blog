@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
-using System.Linq.Dynamic.Core;
 namespace DotnetAngular.Controllers;
 [ApiController]
 public class BlogController: ControllerBase,IBlogController

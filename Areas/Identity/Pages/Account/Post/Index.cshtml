@@ -24,28 +24,29 @@
         <th>CreatedAt</th>
         <th>Actions</th>
     </tr>
-    @foreach (var post in @Model.posts)
-    {
-        <tr>
-            <td>@post.Title</td>
-            <td>@post.Createdat</td>
-            <td>
-                   <a  asp-route-id="@post.Id"  class="btn btn-primary btn-sm"
-                        asp-page="./Add">
-                        Cập nhật post
-                    </a>
-                        <button data-title="Thêm Post" data-link="/Identity/Account/Post/Add?id=@post.Id" type="button" class="btn btn-primary float-right" data-bs-toggle="modal" data-bs-target="#modalform"
-                        data-whatever="@@mdo">
-                Cập nhật post
-                 </button>
-                <a  asp-route-id="@post.Id" class="btn btn-primary btn-sm"
-                     asp-page="./Delete">
-                    xóa
-                </a>
-            </td>
-        </tr>
+            @if(@Model.posts.Any()){
+            @foreach (var post in @Model.posts)
+            {
+                <tr>
+                    <td>@post.Title</td>
+                    <td>@post.Createdat</td>
+                    <td>
+                        <button data-title="Sửa Post" data-link="/Identity/Account/Post/Add?id=@post.Id" type="button" class="btn btn-primary float-right" data-bs-toggle="modal" data-bs-target="#modalform"
+                                data-whatever="@@mdo">
+                            Cập nhật post
+                        </button>
+                        <button data-title="Xóa Post" data-link="/Identity/Account/Post/Delete?id=@post.Id" type="button" class="btn btn-primary float-right" data-bs-toggle="modal" data-bs-target="#comfirmform"
+                                data-whatever="@@mdo">
+                            Xóa
+                        </button>
+                    </td>
+                </tr>
+            }
+            }
+            else{
+                <p>................... </p>
+            }
 
-    }
 </table>
     @{
         Func<int?, string> generateUrl = (int? _pagenumber) =>

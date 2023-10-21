@@ -26,9 +26,9 @@ namespace DotnetAngular.Areas.Identity.Pages.Account.Post
         {
             if (Id != null) {
                 await _blog.Delete(int.Parse(Id.ToString()));
-                return Redirect("./Index");
+                return new NoContentResult();
             }
-            return Page();
+            return new NoContentResult();
         }
     }
 }
