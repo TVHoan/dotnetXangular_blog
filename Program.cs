@@ -40,7 +40,7 @@ builder.Services.AddAuthentication(options =>
 })
     .AddIdentityServerJwt().AddCookie("Cookies", options =>
     {
-        options.Cookie.Name = "auth_cookie";
+        options.Cookie.Name = ".AspNetCore.Identity.Application";
         options.Cookie.SameSite = SameSiteMode.None;
         options.Events = new CookieAuthenticationEvents
         {
@@ -86,7 +86,6 @@ else
 app.UseStaticFiles();
 app.UseRouting();
 app.UseHttpsRedirection();
-app.UseAuthentication();
 app.UseIdentityServer();
 app.UseAuthorization();
 app.UseEndpoints(endpoints =>

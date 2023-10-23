@@ -53,6 +53,7 @@ import {CommentComponent} from "./comment/comment.component";
       { path: 'blog', component: BlogComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'blogdetail', component: DetailBlogContentComponent },
+      { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],
   providers: [
